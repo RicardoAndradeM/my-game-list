@@ -28,6 +28,12 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "io.github.ricardoandradem.mgl.MyGameListApplication"
+    }
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }

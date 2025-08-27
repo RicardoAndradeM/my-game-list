@@ -1,0 +1,1 @@
+web: java -jar build/libs/My-Game-List-0.0.1-SNAPSHOT.jar
