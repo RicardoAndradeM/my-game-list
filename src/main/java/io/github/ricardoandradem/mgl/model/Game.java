@@ -1,5 +1,6 @@
 package io.github.ricardoandradem.mgl.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +16,11 @@ public class Game {
 
     @Enumerated(EnumType.STRING)
     private GameStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User user;
 
     public Game() {}
 
@@ -75,5 +81,13 @@ public class Game {
 
     public void setStatus(GameStatus status) {
         this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

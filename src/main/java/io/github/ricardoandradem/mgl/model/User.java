@@ -1,5 +1,6 @@
 package io.github.ricardoandradem.mgl.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,7 +16,8 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Game> gameList;
 
     public User() {}
@@ -56,5 +58,6 @@ public class User {
 
     public void setGameList(List<Game> gameList) {
         this.gameList = gameList;
+        gameList.forEach(game -> game.setUser(this));
     }
 }
